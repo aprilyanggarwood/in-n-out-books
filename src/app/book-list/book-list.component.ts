@@ -34,23 +34,23 @@ export class BookListComponent implements OnInit {
     this.booksService.getBooks().subscribe(res => {
       console.log(res);
       for (let key in res) {
-        if (res.hasOwnProperty(key)) {
-          let authors = [];
-          if (res[key].details.authors) {
-            authors = res[key].details.authors.map(function(author:any) {
-              return author.name;
-            })
-          }
+        // if (res.hasOwnProperty(key)) {
+        //   let authors = [];
+        //   if (res[key].details.authors) {
+        //     authors = res[key].details.authors.map(function(author:any) {
+        //       return author.name;
+        //     })
+        //   }
 
 
-          this.books.push({
-            isbn: res[key].details.isbn_13 ? res[key].details.isbn_13 : res[key].details.isbn_10,
-            title: res[key].details.title,
-            description: res[key].details.subtitle ? res[key].details.subtitle : 'N/A',
-            numOfPages: res[key].details.number_of_pages,
-            authors: authors
-          })
-        }
+        //   this.books.push({
+        //     isbn: res[key].details.isbn_13 ? res[key].details.isbn_13 : res[key].details.isbn_10,
+        //     title: res[key].details.title,
+        //     description: res[key].details.subtitle ? res[key].details.subtitle : 'N/A',
+        //     numOfPages: res[key].details.number_of_pages,
+        //     authors: authors
+        //   })
+        // }
       }
     })
   }
@@ -58,7 +58,7 @@ export class BookListComponent implements OnInit {
   ngOnInit(): void { }
 
   showBookDetails(isbn: string) {
-    this.book = this.books.find(book => book.isbn === isbn);
+    // this.book = this.books.find(book => book.isbn === isbn);
 
     const dialogRef = this.dialog.open(BookDetailsDialogComponent, {
       data: {
@@ -72,7 +72,7 @@ export class BookListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
-        this.book = null;
+        // this.book = null;
       }
     });
   }
